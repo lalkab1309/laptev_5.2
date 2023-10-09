@@ -5,26 +5,26 @@
 #include <cmath>
 using namespace std;
 
-class Integral {
+class newintegral {
 public:
     using size_t = unsigned int;
     using value_t = float;
     using Iterator = value_t*;
 
-    Integral(const vector<double>& val, const vector<double>& elem)
+    newintegral(const vector<double>& val, const vector<double>& elem)
         : funcval(val), arrayelem(elem) {
         n = val.size() - 1; 
         step = elem[n] - elem[0]; 
     }
 
-    Integral(size_t s) : newsize(s) {
+    newintegral(size_t s) : newsize(s) {
         if (s > getMaxSize()) {
             throw range_error("invalid array size");
         }
         newdata = new value_t[s];
     }
 
-    Integral(size_t size, value_t default_value) : Integral(size) {
+    newintegral(size_t size, value_t default_value) : newintegral(size) {
         for (auto& element : *this) {
             element = default_value;
         }
@@ -32,70 +32,70 @@ public:
 
     double calculateLeftRectangle()
     {
-        double integral = 0;
+        double newintegral = 0;
 
         for (int i = 0; i < n; ++i)
-            integral += funcval[i] * (arrayelem[i + 1] - arrayelem[i]);
+            newintegral += funcval[i] * (arrayelem[i + 1] - arrayelem[i]);
 
-        return integral;
+        return newintegral;
     }
 
     double calculateMiddleRectangle()
     {
-        double integral = 0;
+        double newintegral = 0;
 
         for (int i = 0; i < n; ++i)
         {
             double help = (funcval[i] + funcval[i + 1]) / 2.0;
 
-            integral += help * (arrayelem[i + 1] - arrayelem[i]);
+            newintegral += help * (arrayelem[i + 1] - arrayelem[i]);
         }
 
-        return integral;
+        return newintegral;
     }
 
     double calculateRightRectangle()
     {
-        double integral = 0;
+        double newintegral = 0;
 
         for (int i = 0; i < n; ++i)
-            integral += funcval[i + 1] * (arrayelem[i + 1] - arrayelem[i]);
+            newintegral += funcval[i + 1] * (arrayelem[i + 1] - arrayelem[i]);
 
-        return integral;
+        return newintegral;
     }
 
     double calculateTrapezia()
     {
-        double integral = 0;
+        double newintegral = 0;
 
         for (int i = 0; i < n; ++i)
-            integral += (funcval[i] + funcval[i + 1]) * (arrayelem[i + 1] - arrayelem[i]) / 2;
-        return integral;
+            newintegral += (funcval[i] + funcval[i + 1]) * (arrayelem[i + 1] - arrayelem[i]) / 2;
+        return newintegral;
     }
 
     double calculateSimpson()
     {
-        double integral = 0;
+        double newintegral = 0;
 
         for (int i = 0; i < n; i += 2)
         {
             double step = arrayelem[i + 2] - arrayelem[i];
 
-            integral += (funcval[i] + 4 * funcval[i + 1] + funcval[i + 2]) * step / 6;
+            newintegral += (funcval[i] + 4 * funcval[i + 1] + funcval[i + 2]) * step / 6;
         }
-        return integral;
+        return newintegral;
     }
 
     double calculateNewton()
     {
-        double integral = 0;
+        double newintegral = 0;
 
         if (n % 3 == 0)
         {
             for (int i = 0; i < n; i += 3)
-                integral += (funcval[i] + 3 * funcval[i + 1] + 3 * funcval[i + 2] + funcval[i + 3]) * (arrayelem[i + 3] - arrayelem[i]) / 8;
+                newintegral += (funcval[i] + 3 * funcval[i + 1] + 3 * funcval[i + 2] + funcval[i + 3]) * (arrayelem[i + 3] - arrayelem[i]) / 8;
         }
-        return integral;
+        return newintegral;
     }
 
     void displayInput() {
@@ -187,23 +187,23 @@ int main() {
     for (int i = 0; i < arrsize; ++i)
         cin >> val[i];
 
-    Integral findIntegral(val, elem);
+    newintegral findnewintegral(val, elem);
 
-    findIntegral.displayInput();
+    findnewintegral.displayInput();
 
-    double leftRectangleIntegral = findIntegral.calculateLeftRectangle();
-    double middleRectangleIntegral = findIntegral.calculateMiddleRectangle();
-    double rightRectangleIntegral = findIntegral.calculateRightRectangle();
-    double trapeziaIntegral = findIntegral.calculateTrapezia();
-    double simpsonIntegral = findIntegral.calculateSimpson();
-    double newtonIntegral = findIntegral.calculateNewton();
+    double leftRectanglenewintegral = findnewintegral.calculateLeftRectangle();
+    double middleRectanglenewintegral = findnewintegral.calculateMiddleRectangle();
+    double rightRectanglenewintegral = findnewintegral.calculateRightRectangle();
+    double trapezianewintegral = findnewintegral.calculateTrapezia();
+    double simpsonnewintegral = findnewintegral.calculateSimpson();
+    double newtonnewintegral = findnewintegral.calculateNewton();
 
-    std::cout << "lev priam= " << transform(leftRectangleIntegral) << "\n";
-    std::cout << "sr priam= " << transform(middleRectangleIntegral) << "\n";
-    std::cout << "prav priam= " << transform(rightRectangleIntegral) << "\n";
-    std::cout << "trapeciy= " << transform(trapeziaIntegral) << "\n";
-    std::cout << "Simpson= " << transform(simpsonIntegral) << "\n";
-    std::cout << "Newton " << transform(newtonIntegral) << "\n";
+    std::cout << "lev priam= " << transform(leftRectanglenewintegral) << "\n";
+    std::cout << "sr priam= " << transform(middleRectanglenewintegral) << "\n";
+    std::cout << "prav priam= " << transform(rightRectanglenewintegral) << "\n";
+    std::cout << "trapeciy= " << transform(trapezianewintegral) << "\n";
+    std::cout << "Simpson= " << transform(simpsonnewintegral) << "\n";
+    std::cout << "Newton " << transform(newtonnewintegral) << "\n";
 
     return 0;
 }
