@@ -3,7 +3,6 @@
 #include <sstream>
 #include <vector>
 #include <cmath>
-using namespace std;
 
 class newintegral {
 public:
@@ -100,20 +99,20 @@ public:
 
     void displayInput() {
         
-        cout << endl;
-        cout << "input = argument ";
+        std::cout << endl;
+        std::cout << "input = argument ";
 
         for (int i = 0; i < arrayelem.size(); ++i)
-            cout << arrayelem[i] << " ";
+            std::cout << arrayelem[i] << " ";
 
-        cout << '\n';
+        std::cout << '\n';
 
-        cout << "function ";
+        std::cout << "function ";
 
         for (int i = 0; i < funcval.size(); ++i)
-            cout << funcval[i] << " ";
+            std::cout << funcval[i] << " ";
 
-        cout << '\n';
+        std::cout << '\n';
     }
 
     size_t
@@ -165,9 +164,9 @@ std::string transform(double v) {
     ostringstream oss;
 
     if (std::abs(v - std::round(v)) < help)
-        oss << static_cast<int>(v);
+        std::oss << static_cast<int>(v);
     else
-        oss << fixed << setprecision(1) << v;
+        std::oss << fixed << setprecision(1) << v;
 
     return oss.str();
 }
@@ -175,17 +174,17 @@ std::string transform(double v) {
 int main() {
     int arrsize;
 
-    cin >> arrsize;
+    std::cin >> arrsize;
 
     vector<double> elem(arrsize);
 
     vector<double> val(arrsize);
 
     for (int i = 0; i < arrsize; ++i)
-        cin >> elem[i];
+        std::cin >> elem[i];
 
     for (int i = 0; i < arrsize; ++i)
-        cin >> val[i];
+        std::cin >> val[i];
 
     newintegral findnewintegral(val, elem);
 
